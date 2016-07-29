@@ -4,7 +4,6 @@ final int GAME_RUN = 2;
 final int GAME_LOSE = 3;
 float speed = 5;
 
-
 boolean upPressed = false;
 boolean downPressed = false;
 boolean leftPressed = false;
@@ -22,6 +21,7 @@ PImage start1Ing;
 PImage start2Ing;
 PImage enemy1Ing;
 PImage gainbombIng;
+
 int t1;//treasure position
 int t2;//treasure position
 int hp;
@@ -32,15 +32,10 @@ int f2;//fighter position
 int bg1;//background1
 int bg2;//background2
 int gameState;
-
-
-
-
-
+int e2speed;
 
 void setup () {
-  size(640, 480) ;
-  
+  size(640, 480) ;  
   start1Ing = loadImage("img/start1.png");
   start2Ing = loadImage("img/start2.png");
   end1Ing = loadImage("img/end1.png");  
@@ -63,10 +58,7 @@ void setup () {
   f1 = 580;
   f2 = 240;
   gameState = GAME_START;
-
-
-
-
+  e2speed = floor(random(-5,5));
 }
 
 void draw() {
@@ -80,7 +72,6 @@ void draw() {
         image(start1Ing,0,0);
       }
     }    
-
     break;
     case GAME_RUN :
     
@@ -97,9 +88,18 @@ void draw() {
       f1 += speed;    
     }
     
+    if(keyPressed){
+     e2 += e2speed;     
+    }else{
+     if(e2>=f2){
+      e2 -= e2speed;
+      }else if(e2<=f2){
+      e2 += e2speed;
+      }else if(e2 == f2){
+      e2 += 0;
+      } 
+    }
 
-
-    
     if (       (  (f1-e1)<40  &&  (f1-e1)>-40  ) && ( (f2-e2)<40  &&  (f2-e2)>-40  )       ){
       hp-=40;
         e1 = 0;
@@ -156,8 +156,6 @@ void draw() {
     if(e2<0){
     e2=0;
     }
-    
-  
     break;
     case GAME_LOSE :
     image(end2Ing,0,0);
@@ -170,27 +168,9 @@ void draw() {
       }
     break;
     }
-    }
-
- }
-    
-
-    
-    
-  
-  
-
-
-
-
-
-
-
-
-
-
+  }
+}
 void keyPressed(){
-
   if (key == CODED) { // detect special keys 
     switch (keyCode) {
       case UP:
@@ -207,16 +187,8 @@ void keyPressed(){
         break;
     }
   }
-
-
-
-
-
-
-
 }
 void keyReleased(){
-
   if (key == CODED) {
     switch (keyCode) {
       case UP:
@@ -233,14 +205,4 @@ void keyReleased(){
         break;
     }
   }
-
-
-
-
-
-
-
-
-
-
 }
