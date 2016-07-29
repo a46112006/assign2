@@ -58,7 +58,7 @@ void setup () {
   f1 = 580;
   f2 = 240;
   gameState = GAME_START;
-  e2speed = floor(random(-5,5));
+  e2speed = floor(random(1,3));
 }
 
 void draw() {
@@ -74,7 +74,9 @@ void draw() {
     }    
     break;
     case GAME_RUN :
-    
+    if (e2speed ==0){
+      e2speed = floor(random(-5,5));    
+    }
     if (upPressed) {
       f2 -= speed;
     }
@@ -89,7 +91,11 @@ void draw() {
     }
     
     if(keyPressed){
-     e2 += e2speed;     
+     if(e2>=f2){
+      e2 -= e2speed;
+      }else if(e2<=f2){
+      e2 += e2speed;
+      }   
     }else{
      if(e2>=f2){
       e2 -= e2speed;
