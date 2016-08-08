@@ -125,9 +125,6 @@ void draw() {
       hp = 220;
       }
     }
-    
-    
-    
     image(bg1Ing,bg1-640,0);
     image(bg2Ing,bg2-640,0);
     image(fighterIng,f1,f2);
@@ -164,6 +161,8 @@ void draw() {
     }
     break;
     case GAME_LOSE :
+    f1 = 580;
+    f2 = 240;
     image(end2Ing,0,0);
     if(mouseX < 440 && mouseX > 200 && mouseY > 300 && mouseY < 350){
       image(end1Ing,0,0);
